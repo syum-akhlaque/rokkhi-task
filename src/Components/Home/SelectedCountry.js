@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 const SelectedCountry = () => {
@@ -12,7 +13,6 @@ const SelectedCountry = () => {
             country    : name,
             language : language       
         }
-        console.log(JSON.stringify(requestData))
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -51,5 +51,8 @@ const SelectedCountry = () => {
         </div>
     );
 };
+const mapStateToProps = (state) => {
+    console.log(state)
+}
 
-export default SelectedCountry;
+export default connect(mapStateToProps) (SelectedCountry);

@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Home from './Components/Home/Home';
 import SelectedCountry from './Components/Home/SelectedCountry';
@@ -7,6 +6,7 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
+import Users from './Components/Users/Users';
 function App() {
   return (
     <div >
@@ -16,6 +16,9 @@ function App() {
         <Switch>
           <Route exact path="/">
              <Home></Home>
+          </Route> 
+          <Route exact path="/users">
+             <Users></Users>
           </Route>
 
           <Route exact path="/selectedCountry">

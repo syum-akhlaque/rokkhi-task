@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 import CountryList from './CountryList';
+import {allCountryList} from '../Redux/Actions/AllCountryActions'
 
-const Home = () => {
-    const [country, setCountry]= useState([])
-    useEffect( ()=> {
-        fetch('https://restcountries.eu/rest/v2/all')
-        .then(res => res.json())
-        .then(data => setCountry(data)); 
-        
-    },[])
-    console.log(country)
+const Home = ({allCountryList, loading, country, error}) => {
+  
+    useEffect( () => {
+        allCountryList()
+    }, [])
+   
     return (
         <div>
             <h1 className='text-center my-5'> Select Country Name</h1>
@@ -21,5 +20,13 @@ const Home = () => {
         </div>
     );
 };
-
-export default Home;
+const mapStateToProps = state => 
+(
+    {
+        loading: state.AllCountryReducers.loading,
+        country: state.AllCountryReducers.country,
+        error: state.AllCountryReducers.error
+    }
+    
+)
+export default connect(mapStateToProps, {allCountryList}) (Home);
